@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+		<script>
+			var app=angular.module('myApp',[]);
+			app.controller('myController',function($scope,$http){
+				$scope.findList=function(){
+					$http.get("data.json").success(function(response){
+						$scope.list=response;
+					})
+				}
+
+			});
+		</script>
+</head>
+<body ng-app="myApp" ng-controller="myController" ng-init="findList()">
+		<table>
+			<tr ng-repeat="entity in list">
+				<td>{{entity.name}}</td>
+				<td>{{entity.yuwen}}</td>
+				<td>{{entity.yinyu}}</td>
+				<td>{{entity.shuxue}}</td>
+			</tr>
+		</table>
+	</body>
+</html>
